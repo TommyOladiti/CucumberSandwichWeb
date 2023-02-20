@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+
+    <body>
+
+
+        <div class="login-form">
+            <form>
+                <h2 id="formtitle">Welcome to Login Page.</h2>
+                <label for="username">Username:</label> <br>
+                <input type="text" id="usertext" name="text"> <br>
+                <label for="password">Password:</label> <br>
+                <input type="password" id="password" name="password"><br> <br>
+                <input type="button" class="btn" name="login" onclick="addList()" value="Submit">
+                <p>Your username name is: <b id='result'></b>
+            </form>
+        </div>
+
+
+        <div class="list">
+            <h2>User and Passwords list</h2>
+            <ul id="profile">
+                <li><a href="gregory.html">Gregory Profile</a></li>
+                <li><a href="newman.html">Newman Profile</a></li>
+                <li><a href="regant.html">Regant Profile</a></li>
+            </ul>
+        </div>
+
+
+
+        <script>
+
+
+            var list = document.getElementById('profile');
+
+            function addList() {
+
+                var username = document.getElementById('usertext').value;
+                document.getElementById('result').innerHTML = username;
+                var entry = document.createElement('li');
+                entry.appendChild(document.createTextNode(username));
+                list.appendChild(entry);
+
+            }
+
+
+        </script>
+
+
+
+
+
+
+
+
+    </body>
+
+</html>
