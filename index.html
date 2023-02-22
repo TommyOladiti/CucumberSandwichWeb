@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -17,7 +17,7 @@
 
         <div class="login-form">
             <form>
-                <h2 id="formtitle">Welcome to Login Page.</h2>
+                <h2 id="formtitle">Welcome to Login Page</h2>
                 <label for="username">Username:</label> <br>
                 <input type="text" id="usertext" name="text"> <br>
                 <label for="password">Password:</label> <br>
@@ -27,7 +27,7 @@
             </form>
         </div>
 
-
+        <button type="button" id="backbutton" onclick="backFunction()">Set background color</button>
         <div class="list">
             <h2>User and Passwords list</h2>
             <ul id="profile">
@@ -53,6 +53,12 @@
                 list.appendChild(entry);
 
             }
+
+            function backFunction() {
+                document.getElementById("formtitle").style.color = "aqua";            }
+
+
+
 
 
         </script>

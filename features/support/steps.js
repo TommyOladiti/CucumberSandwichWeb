@@ -1,39 +1,85 @@
-const Browser = require("./world.js");
+const Browser = require("../../Browser.js");
 const browser = new Browser();
 const timeout = 20000;
+const {By} = require('selenium-webdriver');
+
 
 const assert = require('assert');
-const { Given, When, Then} = require('@cucumber/cucumber');
-// const { BeforeAll, BeforeStep, AfterAll } = require('@cucumber/cucumber');
+const { Given, When, Then, BeforeAll, Before, AfterAll } = require('@cucumber/cucumber');
 
 
 // ----------------------------------------------------------------------------
+BeforeAll(async function (){
+    browser.browserBuild();
+}, timeout);
 
-// BeforeAll(async function () {
-//     browser.browserBuild();
-// }, timeout);
+Before(async function () {
+    await browser.browserNavigate('http://127.0.0.1:5500/');
+}, timeout);
 
-// BeforeStep(async function () {
-//     await browser.browserNavigate('http://127.0.0.1:5500/');
-// }, timeout);
-
-// AfterAll(async function () {
-//     await browser.browserExit();
-// }, timeout);
+AfterAll(async function () {
+    await browser.browserExit();
+}, timeout);
 
 
-Given("", function () {
-
-})
-
-When("the webpage has loaded", async function () {
+Given("the page has loaded",  function () {
 
 });
 
-Then("check for a h2", async function () {
+When("a button is clicked", async function () {
+    // const element = await this.getElement(id);
+    // element.click();
+    await browser.elementClick('backbutton')
+});
 
-    // const element = await browser.findElement(By.id('#formtitle'));
-    // const text = await element.getText();
-    // expect(text).to.Equal('Welcome to Login Page.');
+
+Then("the title should be {string}", async function (title) {
+    const actual = await browser.headless.getTitle();
+    assert(actual == title)
 
 });
+Then("the h2 should be {string}", async function (header) {
+
+    const element = await browser.headless.findElement(By.id('formtitle')).getText();
+    assert(element == header)
+
+});
+
+Then("there should be a list", async function () {
+
+    const element = await browser.headless.findElement(By.className('list')).getTagName();
+    assert(element == "div")
+
+});
+
+Then("there is a different background color within the page", async function () {
+
+    const element = await browser.elementColor('formtitle');
+    assert(element == "rgba(0, 255, 255, 1)")
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // console.log('*****************************************');
+    // console.log('*****************************************');
+    // console.log('*****************************************');
+    // console.log('*****************************************');
+    // console.log('*****************************************');
+
+    // browser.browserBuild();
+    // await browser.browserNavigate('http://127.0.0.1:5500/');// the page has been loaded
+    // await browser.browserNavigate('https://www.bbc.co.uk/news');
